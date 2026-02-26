@@ -36,7 +36,7 @@ Si nos fijamos en el modelado del juego, podemos observar que sigue el mismo com
 
 Encontramos 5 tipos de combinación de puntuajes posibles:
 
-- Los puntuajes son distintos y al menos uno de ellos es < 3: Se debe traducir cada puntuaje de manera literal
+- Los puntuajes son distintos, y el mayor es < 4: Se debe traducir cada puntuaje de manera literal
 - Ambos puntuajes son iguales y < 3: Se debe traducir como "(traducción literal)-All"
 - Ambos puntuajes son iguales y >= 3: Se debe traducir como "Deuce"
 - Existe una diferencia de 1 unidad entre los dos puntuajes, y el mayor es >= 4: Se debe traducir como "Ventaja para (el jugador con mayor puntuaje)"
@@ -53,7 +53,7 @@ Con esto, se habrán comprobado todos los posibles casos.
 Podemos encontrar exactamente las mismas combinaciones en el caso de los sets. En este caso, no es necesaria una traducción, por lo que simplemente se definirá en qué ocasión debe acabar el set:
 
 - Existe una diferencia igual a 2 unidades entre los dos puntuajes, y el mayor es >= 4: Se debe finalizar el set
-- En caso contrario: El set debe continuar
+- Mayor < 4, o diferencia < 2: El set debe continuar
 
 Y se repiten de nuevo los casos que no deberían ocurrir:
 - Existe una diferencia mayor a 2 unidades entre los dos puntuajes, y el mayor es >= 4: El juego ya debería haber finalizado (error)
