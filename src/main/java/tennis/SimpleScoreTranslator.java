@@ -1,6 +1,6 @@
 package tennis;
 
-public class SimpleScoreTranslator implements IGameScoreMultipleTranslator {
+public class SimpleScoreTranslator implements IScoreMultipleTranslator {
 
     ScoreTranslator scoreTranslator;
 
@@ -9,13 +9,13 @@ public class SimpleScoreTranslator implements IGameScoreMultipleTranslator {
     }
 
     @Override
-    public boolean applies(Game game) {
-        return !game.isEqualScore() && game.maxScore() < 4;
+    public boolean applies(Annotable annotable) {
+        return !annotable.isEqualScore() && annotable.maxScore() < 4;
     }
 
     @Override
-    public String translate(Game game) {
-        if (!applies(game)) throw new IllegalArgumentException("Invalid score combination");
-        return scoreTranslator.translate(game.player1Score) + "-" + scoreTranslator.translate(game.player2Score);
+    public String translate(Annotable annotable) {
+        if (!applies(annotable)) throw new IllegalArgumentException("Invalid score combination");
+        return scoreTranslator.translate(annotable.player1Score) + "-" + scoreTranslator.translate(annotable.player2Score);
     }
 }

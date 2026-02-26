@@ -4,11 +4,11 @@ public class GameScoreTranslator {
 
     ScoreTranslator scoreTranslator;
 
-    private final IGameScoreMultipleTranslator[] translators;
+    private final IScoreMultipleTranslator[] translators;
 
     GameScoreTranslator() {
         this.scoreTranslator = new ScoreTranslator();
-        translators = new IGameScoreMultipleTranslator[]{
+        translators = new IScoreMultipleTranslator[]{
                 new SimpleScoreTranslator(),
                 new AdvantageTranslator(),
                 new SetWinTranslator(),
@@ -20,7 +20,7 @@ public class GameScoreTranslator {
     public String translate(Game game) {
         if(game.minScore() < 0) throw new IllegalArgumentException("Scores cannot be negative numbers");
 
-        for (IGameScoreMultipleTranslator translator : translators) {
+        for (IScoreMultipleTranslator translator : translators) {
             if (translator.applies(game)) {
                 return translator.translate(game);
             }

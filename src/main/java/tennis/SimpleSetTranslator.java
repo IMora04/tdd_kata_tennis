@@ -1,16 +1,16 @@
 package tennis;
 
-public class AdvantageTranslator implements IScoreMultipleTranslator {
+public class SimpleSetTranslator implements IScoreMultipleTranslator {
 
     @Override
     public boolean applies(Annotable annotable) {
-        return annotable.scoreDiff().equals(1) && annotable.maxScore() >= 4;
+        return annotable.scoreDiff() < 2 || annotable.maxScore() < 4;
     }
 
     @Override
     public String translate(Annotable annotable) {
         if (!applies(annotable)) throw new IllegalArgumentException("Invalid score combination");
-        return "Advantage " + annotable.leader();
+        return annotable.player1Score + "-" + annotable.player2Score;
     }
 
 }
