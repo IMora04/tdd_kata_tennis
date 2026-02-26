@@ -1,13 +1,9 @@
 package tennis;
 
-public class Game {
-
-    Integer player1Score;
-    Integer player2Score;
+public class Game extends Annotable {
 
     Game(Integer player1Score, Integer player2Score) {
-        this.player1Score = player1Score;
-        this.player2Score = player2Score;
+        super(player1Score, player2Score);
     }
 
 }

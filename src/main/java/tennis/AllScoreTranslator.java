@@ -10,8 +10,7 @@ public class AllScoreTranslator implements IGameScoreMultipleTranslator {
 
     @Override
     public boolean applies(Game game) {
-        boolean scoreIsEqual = game.player1Score.equals(game.player2Score);
-        return scoreIsEqual && game.player1Score < 3;
+        return game.isEqualScore() && game.player1Score < 3;
     }
 
     @Override

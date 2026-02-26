@@ -18,10 +18,7 @@ public class GameScoreTranslator {
     }
 
     public String translate(Game game) {
-        Integer lowestScore = Integer.min(game.player1Score, game.player2Score);
-        if(lowestScore < 0) throw new IllegalArgumentException("Scores cannot be negative numbers");
-
-        StringBuilder sb = new StringBuilder();
+        if(game.minScore() < 0) throw new IllegalArgumentException("Scores cannot be negative numbers");
 
         for (IGameScoreMultipleTranslator translator : translators) {
             if (translator.applies(game)) {

@@ -1,13 +1,9 @@
 package tennis;
 
-public class Set {
+public class Set extends Annotable{
 
-    Integer player1WonGames;
-    Integer player2WonGames;
-
-    Set(Integer player1WonGames, Integer player2WonGames) {
-        this.player1WonGames = player1WonGames;
-        this.player2WonGames = player2WonGames;
+    Set(Integer player1Score, Integer player2Score) {
+        super(player1Score, player2Score);
     }
 
 }

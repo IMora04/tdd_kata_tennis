@@ -10,10 +10,7 @@ public class SimpleScoreTranslator implements IGameScoreMultipleTranslator {
 
     @Override
     public boolean applies(Game game) {
-        boolean scoreIsEqual = game.player1Score.equals(game.player2Score);
-        Integer biggestScore = Integer.max(game.player1Score, game.player2Score);
-
-        return !scoreIsEqual && biggestScore < 4;
+        return !game.isEqualScore() && game.maxScore() < 4;
     }
 
     @Override
