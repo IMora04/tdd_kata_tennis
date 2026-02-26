@@ -1,6 +1,8 @@
-package tennis;
+package tennis.set;
 
-public class Set extends Annotable{
+import tennis.Annotable;
+
+public class Set extends Annotable {
 
     Set(Integer player1Score, Integer player2Score) {
         super(player1Score, player2Score);

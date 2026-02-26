@@ -1,4 +1,6 @@
-package tennis;
+package tennis.game;
+
+import tennis.IScoreMultipleTranslator;
 
 public class GameScoreTranslator {
 

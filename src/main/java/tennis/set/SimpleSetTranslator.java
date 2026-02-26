@@ -1,4 +1,7 @@
-package tennis;
+package tennis.set;
+
+import tennis.Annotable;
+import tennis.IScoreMultipleTranslator;
 
 public class SimpleSetTranslator implements IScoreMultipleTranslator {
 

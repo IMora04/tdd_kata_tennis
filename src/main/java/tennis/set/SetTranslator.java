@@ -1,4 +1,7 @@
-package tennis;
+package tennis.set;
+
+import tennis.IScoreMultipleTranslator;
+import tennis.game.ScoreTranslator;
 
 public class SetTranslator {
 

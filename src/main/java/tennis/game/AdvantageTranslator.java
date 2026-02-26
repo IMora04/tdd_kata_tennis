@@ -1,4 +1,7 @@
-package tennis;
+package tennis.game;
+
+import tennis.Annotable;
+import tennis.IScoreMultipleTranslator;
 
 public class AdvantageTranslator implements IScoreMultipleTranslator {
 

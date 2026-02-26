@@ -1,21 +1,25 @@
-package tennis;
+package tennis.game;
 
-public class SimpleScoreTranslator implements IScoreMultipleTranslator {
+import tennis.Annotable;
+import tennis.IScoreMultipleTranslator;
+
+public class DeuceTranslator implements IScoreMultipleTranslator {
 
     ScoreTranslator scoreTranslator;
 
-    SimpleScoreTranslator() {
+    DeuceTranslator() {
         this.scoreTranslator = new ScoreTranslator();
     }
 
     @Override
     public boolean applies(Annotable annotable) {
-        return !annotable.isEqualScore() && annotable.maxScore() < 4;
+        return annotable.isEqualScore() && annotable.player1Score >= 3;
     }
 
     @Override
     public String translate(Annotable annotable) {
         if (!applies(annotable)) throw new IllegalArgumentException("Invalid score combination");
-        return scoreTranslator.translate(annotable.player1Score) + "-" + scoreTranslator.translate(annotable.player2Score);
+        return "Deuce";
     }
+
 }

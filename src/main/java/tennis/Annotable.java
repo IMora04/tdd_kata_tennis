@@ -2,10 +2,10 @@ package tennis;
 
 public abstract class Annotable {
 
-    Integer player1Score;
-    Integer player2Score;
+    public Integer player1Score;
+    public Integer player2Score;
 
-    Annotable(Integer player1Score, Integer player2Score) {
+    protected Annotable(Integer player1Score, Integer player2Score) {
         this.player1Score = player1Score;
         this.player2Score = player2Score;
     }

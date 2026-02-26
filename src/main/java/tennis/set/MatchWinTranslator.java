@@ -1,4 +1,7 @@
-package tennis;
+package tennis.set;
+
+import tennis.Annotable;
+import tennis.WinTranslator;
 
 public class MatchWinTranslator extends WinTranslator {
 

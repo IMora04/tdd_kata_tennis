@@ -1,4 +1,6 @@
-package tennis;
+package tennis.game;
+
+import tennis.Annotable;
 
 public class Game extends Annotable {
 

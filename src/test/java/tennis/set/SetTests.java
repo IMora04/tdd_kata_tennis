@@ -1,7 +1,10 @@
-package tennis;
+package tennis.set;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import tennis.set.Set;
+import tennis.set.SetTranslator;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
