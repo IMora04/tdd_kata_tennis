@@ -8,100 +8,90 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.stream.Stream;
 
 public class GameTests {
-
-    static class TestCase {
-        Integer player1Score;
-        Integer player2Score;
-
-        TestCase(Integer player1Score, Integer player2Score) {
-            this.player1Score = player1Score;
-            this.player2Score = player2Score;
-        }
-    }
-
-    static Stream<TestCase> differentScoreAndBiggestIsLowerThan3Cases() {
+    
+    static Stream<Game> differentScoreAndBiggestIsLowerThan3Cases() {
         return Stream.of(
-            new TestCase(0, 1),
-            new TestCase(0, 2),
-            new TestCase(1, 0),
-            new TestCase(1, 2),
-            new TestCase(2, 0),
-            new TestCase(2, 1)
+            new Game(0, 1),
+            new Game(0, 2),
+            new Game(1, 0),
+            new Game(1, 2),
+            new Game(2, 0),
+            new Game(2, 1)
         );
     }
 
-    static Stream<TestCase> sameScoreAndLowerThan3Cases() {
+    static Stream<Game> sameScoreAndLowerThan3Cases() {
         return Stream.of(
-            new TestCase(0, 0),
-            new TestCase(1, 1),
-            new TestCase(2, 2)
+            new Game(0, 0),
+            new Game(1, 1),
+            new Game(2, 2)
         );
     }
 
-    static Stream<TestCase> sameScoreAndGreaterOrEqualTo3Cases() {
+    static Stream<Game> sameScoreAndGreaterOrEqualTo3Cases() {
         return Stream.of(
-            new TestCase(3, 3),
-            new TestCase(10, 10),
-            new TestCase(12345, 12345)
+            new Game(3, 3),
+            new Game(10, 10),
+            new Game(12345, 12345)
         );
     }
 
-    static Stream<TestCase> player1DiffOf1WithPlayer2AndGreaterOrEqualTo4Cases() {
+    static Stream<Game> player1DiffOf1WithPlayer2AndGreaterOrEqualTo4Cases() {
         return Stream.of(
-            new TestCase(4,3),
-            new TestCase(10,9),
-            new TestCase(12345, 12344)
+            new Game(4,3),
+            new Game(10,9),
+            new Game(12345, 12344)
         );
     }
 
-    static Stream<TestCase> player2DiffOf1WithPlayer1AndGreaterOrEqualTo4Cases() {
+    static Stream<Game> player2DiffOf1WithPlayer1AndGreaterOrEqualTo4Cases() {
         return Stream.of(
-            new TestCase(3, 4),
-            new TestCase(9,10),
-            new TestCase(12344, 12345)
+            new Game(3, 4),
+            new Game(9,10),
+            new Game(12344, 12345)
         );
     }
 
-    static Stream<TestCase> player1DiffOf2WithPlayer2AndGreaterOrEqualTo4Cases() {
+    static Stream<Game> player1DiffOf2WithPlayer2AndGreaterOrEqualTo4Cases() {
         return Stream.of(
-            new TestCase(4,2),
-            new TestCase(10,8),
-            new TestCase(12345, 12343)
+            new Game(4,2),
+            new Game(10,8),
+            new Game(12345, 12343)
         );
     }
 
-    static Stream<TestCase> player2DiffOf2WithPlayer1AndGreaterOrEqualTo4Cases() {
+    static Stream<Game> player2DiffOf2WithPlayer1AndGreaterOrEqualTo4Cases() {
         return Stream.of(
-            new TestCase(2, 4),
-            new TestCase(8,10),
-            new TestCase(12343, 12345)
+            new Game(2, 4),
+            new Game(8,10),
+            new Game(12343, 12345)
         );
     }
 
-    static Stream<TestCase> scoreDiffGreaterThan2AndBiggestGreaterOrEqualTo4Cases() {
+    static Stream<Game> scoreDiffGreaterThan2AndBiggestGreaterOrEqualTo4Cases() {
         return Stream.of(
-            new TestCase(1, 4),
-            new TestCase(1, 12345),
-            new TestCase(12342, 12345),
-            new TestCase(12342, 67890),
-            new TestCase(4, 1),
-            new TestCase(12345, 1),
-            new TestCase(12345, 12342),
-            new TestCase(67890, 12342)
+            new Game(1, 4),
+            new Game(1, 12345),
+            new Game(12342, 12345),
+            new Game(12342, 67890),
+            new Game(4, 1),
+            new Game(12345, 1),
+            new Game(12345, 12342),
+            new Game(67890, 12342)
         );
     }
 
-    static Stream<TestCase> negativeScoreCases() {
+    static Stream<Game> negativeScoreCases() {
         return Stream.of(
-            new TestCase(-1, 4),
-            new TestCase(4, -7),
-            new TestCase(-3, -6)
+            new Game(-1, 4),
+            new Game(4, -7),
+            new Game(-3, -6)
         );
     }
 
     @ParameterizedTest
     @MethodSource("differentScoreAndBiggestIsLowerThan3Cases")
-    void differentScoreAndBiggestIsLowerThan3ShouldReturnLiteralTranslation(TestCase testCase) {
+    void differentScoreAndBiggestIsLowerThan3ShouldReturnLiteralTranslation(Game testCase) {
         GameScoreTranslator gameTranslator = new GameScoreTranslator();
         ScoreTranslator scoreTranslator = new ScoreTranslator();
 
@@ -112,7 +102,7 @@ public class GameTests {
 
     @ParameterizedTest
     @MethodSource("sameScoreAndLowerThan3Cases")
-    void sameScoreAndAtLeastOneLowerThan3ShouldTranslateAll(TestCase testCase) {
+    void sameScoreAndAtLeastOneLowerThan3ShouldTranslateAll(Game testCase) {
         GameScoreTranslator gameTranslator = new GameScoreTranslator();
         ScoreTranslator scoreTranslator = new ScoreTranslator();
 
@@ -124,7 +114,7 @@ public class GameTests {
 
     @ParameterizedTest
     @MethodSource("sameScoreAndGreaterOrEqualTo3Cases")
-    void sameScoreAndGreaterOrEqualTo3ShouldTranslateDeuce(TestCase testCase) {
+    void sameScoreAndGreaterOrEqualTo3ShouldTranslateDeuce(Game testCase) {
         GameScoreTranslator gameTranslator = new GameScoreTranslator();
 
         String res = gameTranslator.translate(testCase);
@@ -134,7 +124,7 @@ public class GameTests {
 
     @ParameterizedTest
     @MethodSource("player1DiffOf1WithPlayer2AndGreaterOrEqualTo4Cases")
-    void player1DiffOf1WithPlayer2AndGreaterOrEqualTo4ShouldTranslateAdvantagePlayer1(TestCase testCase) {
+    void player1DiffOf1WithPlayer2AndGreaterOrEqualTo4ShouldTranslateAdvantagePlayer1(Game testCase) {
         GameScoreTranslator gameTranslator = new GameScoreTranslator();
 
         String res = gameTranslator.translate(testCase);
@@ -144,7 +134,7 @@ public class GameTests {
 
     @ParameterizedTest
     @MethodSource("player2DiffOf1WithPlayer1AndGreaterOrEqualTo4Cases")
-    void player2DiffOf1WithPlayer1AndGreaterOrEqualTo4ShouldTranslateAdvantagePlayer2(TestCase testCase) {
+    void player2DiffOf1WithPlayer1AndGreaterOrEqualTo4ShouldTranslateAdvantagePlayer2(Game testCase) {
         GameScoreTranslator gameTranslator = new GameScoreTranslator();
 
         String res = gameTranslator.translate(testCase);
@@ -154,7 +144,7 @@ public class GameTests {
 
     @ParameterizedTest
     @MethodSource("player1DiffOf2WithPlayer2AndGreaterOrEqualTo4Cases")
-    void player1DiffOf2WithPlayer2AndGreaterOrEqualTo4ShouldTranslateWinPlayer1(TestCase testCase) {
+    void player1DiffOf2WithPlayer2AndGreaterOrEqualTo4ShouldTranslateWinPlayer1(Game testCase) {
         GameScoreTranslator gameTranslator = new GameScoreTranslator();
 
         String res = gameTranslator.translate(testCase);
@@ -164,7 +154,7 @@ public class GameTests {
 
     @ParameterizedTest
     @MethodSource("player2DiffOf2WithPlayer1AndGreaterOrEqualTo4Cases")
-    void player2DiffOf2WithPlayer1AndGreaterOrEqualTo4ShouldTranslateWinPlayer2(TestCase testCase) {
+    void player2DiffOf2WithPlayer1AndGreaterOrEqualTo4ShouldTranslateWinPlayer2(Game testCase) {
         GameScoreTranslator gameTranslator = new GameScoreTranslator();
 
         String res = gameTranslator.translate(testCase);
@@ -174,7 +164,7 @@ public class GameTests {
 
     @ParameterizedTest
     @MethodSource("scoreDiffGreaterThan2AndBiggestGreaterOrEqualTo4Cases")
-    void scoreDiffGreaterThan2AndBiggestGreaterOrEqualTo4ShouldRaiseException(TestCase testCase) {
+    void scoreDiffGreaterThan2AndBiggestGreaterOrEqualTo4ShouldRaiseException(Game testCase) {
         GameScoreTranslator gameTranslator = new GameScoreTranslator();
 
         assertThrows(IllegalArgumentException.class, () -> gameTranslator.translate(testCase));
@@ -182,7 +172,7 @@ public class GameTests {
 
     @ParameterizedTest
     @MethodSource("negativeScoreCases")
-    void negativeScoreShouldRaiseException(TestCase testCase) {
+    void negativeScoreShouldRaiseException(Game testCase) {
         GameScoreTranslator gameTranslator = new GameScoreTranslator();
 
         assertThrows(IllegalArgumentException.class, () -> gameTranslator.translate(testCase));

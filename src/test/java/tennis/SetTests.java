@@ -8,66 +8,56 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.stream.Stream;
 
 public class SetTests {
-
-    static class TestCase {
-        Integer player1WonGames;
-        Integer player2WonGames;
-
-        TestCase(Integer player1WonGames, Integer player2WonGames) {
-            this.player1WonGames = player1WonGames;
-            this.player2WonGames = player2WonGames;
-        }
-    }
-
-    static Stream<TestCase> player1DiffOf2WithPlayer2AndGreaterOrEqualTo4Cases() {
+    
+    static Stream<Set> player1DiffOf2WithPlayer2AndGreaterOrEqualTo4Cases() {
         return Stream.of(
-                new TestCase(4,2),
-                new TestCase(10,8),
-                new TestCase(12345, 12343)
+                new Set(4,2),
+                new Set(10,8),
+                new Set(12345, 12343)
         );
     }
 
-    static Stream<TestCase> player2DiffOf2WithPlayer1AndGreaterOrEqualTo4Cases() {
+    static Stream<Set> player2DiffOf2WithPlayer1AndGreaterOrEqualTo4Cases() {
         return Stream.of(
-        new TestCase(2, 4),
-                new TestCase(8,10),
-                new TestCase(12343, 12345)
+        new Set(2, 4),
+                new Set(8,10),
+                new Set(12343, 12345)
         );
     }
 
-    static Stream<TestCase> gameDiffGreaterThan2AndBiggestGreaterOrEqualTo4Cases() {
+    static Stream<Set> gameDiffGreaterThan2AndBiggestGreaterOrEqualTo4Cases() {
         return Stream.of(
-                new TestCase(1, 4),
-                new TestCase(1, 12345),
-                new TestCase(12342, 12345),
-                new TestCase(12342, 67890),
-                new TestCase(4, 1),
-                new TestCase(12345, 1),
-                new TestCase(12345, 12342),
-                new TestCase(67890, 12342)
+                new Set(1, 4),
+                new Set(1, 12345),
+                new Set(12342, 12345),
+                new Set(12342, 67890),
+                new Set(4, 1),
+                new Set(12345, 1),
+                new Set(12345, 12342),
+                new Set(67890, 12342)
         );
     }
 
-    static Stream<TestCase> negativeGameCases() {
+    static Stream<Set> negativeGameCases() {
         return Stream.of(
-                new TestCase(-1, 4),
-                new TestCase(4, -7),
-                new TestCase(-3, -6)
+                new Set(-1, 4),
+                new Set(4, -7),
+                new Set(-3, -6)
         );
     }
 
-    static Stream<TestCase> biggestIsLowerThan4OrDiffLowerThan2Cases() {
+    static Stream<Set> biggestIsLowerThan4OrDiffLowerThan2Cases() {
         return Stream.of(
-            new TestCase(0, 0),
-            new TestCase(1, 3),
-            new TestCase(6, 7),
-            new TestCase(150, 149)
+            new Set(0, 0),
+            new Set(1, 3),
+            new Set(6, 7),
+            new Set(150, 149)
         );
     }
 
     @ParameterizedTest
     @MethodSource("player1DiffOf2WithPlayer2AndGreaterOrEqualTo4Cases")
-    void player1DiffOf2WithPlayer2AndGreaterOrEqualTo4ShouldTranslateWinPlayer1(TestCase testCase) {
+    void player1DiffOf2WithPlayer2AndGreaterOrEqualTo4ShouldTranslateWinPlayer1(Set testCase) {
         SetTranslator setTranslator = new SetTranslator();
 
         String res = setTranslator.translate(testCase);
@@ -77,7 +67,7 @@ public class SetTests {
 
     @ParameterizedTest
     @MethodSource("player2DiffOf2WithPlayer1AndGreaterOrEqualTo4Cases")
-    void player2DiffOf2WithPlayer1AndGreaterOrEqualTo4ShouldTranslateWinPlayer2(TestCase testCase) {
+    void player2DiffOf2WithPlayer1AndGreaterOrEqualTo4ShouldTranslateWinPlayer2(Set testCase) {
         SetTranslator setTranslator = new SetTranslator();
 
         String res = setTranslator.translate(testCase);
@@ -87,7 +77,7 @@ public class SetTests {
 
     @ParameterizedTest
     @MethodSource("gameDiffGreaterThan2AndBiggestGreaterOrEqualTo4Cases")
-    void gameDiffGreaterThan2AndBiggestGreaterOrEqualTo4ShouldRaiseException(TestCase testCase) {
+    void gameDiffGreaterThan2AndBiggestGreaterOrEqualTo4ShouldRaiseException(Set testCase) {
         SetTranslator setTranslator = new SetTranslator();
 
         assertThrows(IllegalArgumentException.class, () -> setTranslator.translate(testCase));
@@ -95,7 +85,7 @@ public class SetTests {
 
     @ParameterizedTest
     @MethodSource("negativeGameCases")
-    void negativeGameShouldRaiseException(TestCase testCase) {
+    void negativeGameShouldRaiseException(Set testCase) {
         SetTranslator setTranslator = new SetTranslator();
 
         assertThrows(IllegalArgumentException.class, () -> setTranslator.translate(testCase));
@@ -103,7 +93,7 @@ public class SetTests {
 
     @ParameterizedTest
     @MethodSource("biggestIsLowerThan4OrDiffLowerThan2Cases")
-    void biggestIsLowerThan4OrDiffLowerThan2ShouldShowSetScore(TestCase testCase) {
+    void biggestIsLowerThan4OrDiffLowerThan2ShouldShowSetScore(Set testCase) {
         SetTranslator setTranslator = new SetTranslator();
 
         String res = setTranslator.translate(testCase);
