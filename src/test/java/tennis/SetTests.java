@@ -98,7 +98,7 @@ public class SetTests {
 
         String res = setTranslator.translate(testCase);
 
-        assertEquals(res, testCase.player1WonGames + "-" + testCase.player2WonGames);
+        assertEquals(res, testCase.player1Score + "-" + testCase.player2Score);
     }
 
 }
