@@ -2,7 +2,6 @@ package tennis.game;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import tennis.game.ScoreTranslator;
 
 import java.util.stream.Stream;
 
