@@ -51,7 +51,7 @@ public class ScoreTranslatorTests {
     }
 
     @ParameterizedTest
-    @MethodSource("expectedNumbersCases")
+    @MethodSource("unexpectedNumbersCases")
     void unexpectedNumbersShouldRaiseException(Integer number) {
         ScoreTranslator scoreTranslator = new ScoreTranslator();
 
